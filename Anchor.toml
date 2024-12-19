@@ -2,6 +2,7 @@
 
 [features]
 resolution = true
+seeds = false
 skip-lint = false
 
 [programs.localnet]
