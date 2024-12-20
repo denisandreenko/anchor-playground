@@ -11,6 +11,14 @@ pub mod anchor_playground {
     use super::*;
 
     pub fn initialize(ctx: Context<Initialize>, data: Data) -> Result<()> {
+        if data.data >= 100 {
+            // This err! macro add file and line information to the error that is then logged by anchor
+            return err!(MyError::DataTooLarge);
+        }
+        
+        // Alteranative to the error above
+        require!(data.data < 100, MyError::DataTooLarge);
+
         if ctx.accounts.token_account.amount > 0 {
             ctx.accounts.new_account.data = data.data;
             ctx.accounts.new_account.age = data.age;
@@ -50,4 +58,10 @@ pub struct NewAccount {
 pub struct Data {
     pub data: u64,
     pub age: u8
+}
+
+#[error_code]
+pub enum MyError {
+    #[msg("MyAccount may only hold data below 100")]
+    DataTooLarge
 }
