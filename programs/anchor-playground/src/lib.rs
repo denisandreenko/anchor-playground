@@ -10,11 +10,12 @@ declare_id!("ENWwGmKmN5quw638BYpeJhU7rhoVFpfDwCgRFwjv8ACD");
 pub mod anchor_playground {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>, data: u64) -> Result<()> {
+    pub fn initialize(ctx: Context<Initialize>, data: Data) -> Result<()> {
         if ctx.accounts.token_account.amount > 0 {
-            ctx.accounts.new_account.data = data;
+            ctx.accounts.new_account.data = data.data;
+            ctx.accounts.new_account.age = data.age;
         }
-        msg!("Changed data to: {}!", data); // Message will show up in the tx logs
+        msg!("Changed data to: {}!", data.data); // Message will show up in the tx logs
         Ok(())
     }
 }
@@ -40,5 +41,13 @@ pub struct Initialize<'info> {
 #[account]
 pub struct NewAccount {
     data: u64,
+    pub age: u8,
     mint: Pubkey
+}
+
+// Custom type used as an instruction data arg
+#[derive(AnchorSerialize, AnchorDeserialize, Eq, PartialEq, Clone, Copy, Debug)]
+pub struct Data {
+    pub data: u64,
+    pub age: u8
 }
