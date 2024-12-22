@@ -7,6 +7,8 @@ skip-lint = false
 [programs.localnet]
 anchor_playground = "ENWwGmKmN5quw638BYpeJhU7rhoVFpfDwCgRFwjv8ACD"
 pda = "BytBnwkEfiMAqb2QB2oTNRm5kA2KfEU8Yx5BhhrQqg9Q"
+pupper-master = "22TSto1fy2Rv8zMj7BQ3v17BpkFQcVjJPk3Hnbsgm5rj"
+puppet = "6T4UpJ2Qk8P2HQbvE7tAZ561Pk8p4D6i75fphntnWwuM"
 
 [registry]
 url = "https://api.apr.dev"
