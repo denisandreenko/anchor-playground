@@ -2,11 +2,11 @@
 
 [features]
 resolution = true
-seeds = false
 skip-lint = false
 
 [programs.localnet]
 anchor_playground = "ENWwGmKmN5quw638BYpeJhU7rhoVFpfDwCgRFwjv8ACD"
+pda = "BytBnwkEfiMAqb2QB2oTNRm5kA2KfEU8Yx5BhhrQqg9Q"
 
 [registry]
 url = "https://api.apr.dev"

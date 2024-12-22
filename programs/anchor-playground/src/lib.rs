@@ -1,6 +1,6 @@
 // use this import to gain access to common anchor features
 use anchor_lang::prelude::*;
-use anchor_spl::token::TokenAccount;
+// use anchor_spl::token::TokenAccount;
 
 // declare an id for your program
 declare_id!("ENWwGmKmN5quw638BYpeJhU7rhoVFpfDwCgRFwjv8ACD");
@@ -19,10 +19,10 @@ pub mod anchor_playground {
         // Alteranative to the error above
         require!(data.data < 100, MyError::DataTooLarge);
 
-        if ctx.accounts.token_account.amount > 0 {
-            ctx.accounts.new_account.data = data.data;
-            ctx.accounts.new_account.age = data.age;
-        }
+        // if ctx.accounts.token_account.amount > 0 {
+        //     ctx.accounts.new_account.data = data.data;
+        //     ctx.accounts.new_account.age = data.age;
+        // }
         msg!("Changed data to: {}!", data.data); // Message will show up in the tx logs
         Ok(())
     }
@@ -36,11 +36,11 @@ pub struct Initialize<'info> {
     // pub signer: Signer<'info>,
     #[account(mut)] // indicate that should be mutable
     pub new_account: Account<'info, NewAccount>, // The Account type is used when an instruction is interested in the deserialized data of the account
-    #[account(
-        constraint = new_account.mint == token_account.mint, // whether the incoming TokenAccount belongs to the admin mint.
-        has_one = owner // token_account.owner == owner.key()
-    )]
-    pub token_account: Account<'info, TokenAccount>,
+    // #[account(
+    //     constraint = new_account.mint == token_account.mint, // whether the incoming TokenAccount belongs to the admin mint.
+    //     has_one = owner // token_account.owner == owner.key()
+    // )]
+    // pub token_account: Account<'info, TokenAccount>,
     pub owner: Signer<'info>,
     pub system_program: Program<'info, System>,
 }
